@@ -1,0 +1,33 @@
+<section class="card">
+  <div class="card-body">
+    <ng-container [ngSwitch]="headingLevel">
+      <h1 *ngSwitchCase="1" class="card-title"><ng-container *ngTemplateOutlet="headerContent"></ng-container></h1>
+      <h2 *ngSwitchCase="2" class="card-title"><ng-container *ngTemplateOutlet="headerContent"></ng-container></h2>
+      <h3 *ngSwitchCase="3" class="card-title"><ng-container *ngTemplateOutlet="headerContent"></ng-container></h3>
+      <h4 *ngSwitchCase="4" class="card-title"><ng-container *ngTemplateOutlet="headerContent"></ng-container></h4>
+      <h5 *ngSwitchCase="5" class="card-title"><ng-container *ngTemplateOutlet="headerContent"></ng-container></h5>
+      <h6 *ngSwitchCase="6" class="card-title"><ng-container *ngTemplateOutlet="headerContent"></ng-container></h6>
+      <h2 *ngSwitchDefault class="card-title"><ng-container *ngTemplateOutlet="headerContent"></ng-container></h2>
+    </ng-container>
+    <p class="card-body"><ng-content></ng-content></p>
+  </div>
+  <div class="card-footer" *ngIf="!!this.cardFooter">
+    <ng-content select='iq-card-footer'></ng-content>
+  </div>
+</section>
+
+<ng-template #headerContent>
+  <a *ngIf="headerLink !== undefined" href="{{ headerLink }}">
+    <ng-container *ngTemplateOutlet="headerOrHeading"></ng-container>
+  </a>
+  <ng-container *ngIf="headerLink === undefined">
+    <ng-container *ngTemplateOutlet="headerOrHeading"></ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #headerOrHeading>
+  <ng-container *ngIf="!!this.cardHeader">
+    <ng-container *ngTemplateOutlet="cardHeader.template"></ng-container>
+  </ng-container>
+  {{ heading }}
+</ng-template>

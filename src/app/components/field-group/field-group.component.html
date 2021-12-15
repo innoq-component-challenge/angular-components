@@ -1,0 +1,24 @@
+<div class="field-group">
+  <label for="{{ name }}" class="form-label">{{ label }}</label>
+  <ng-container *ngIf="!!form; else noForm">
+    <input type="{{ type }}"
+           id="{{ inputId }}"
+           name="{{ name }}"
+           class="form-control"
+           [formControl]="form"
+           [class.is-invalid]="form.invalid && (form.dirty || form.touched)"
+           >
+    <p *ngIf="form.errors?.['required']" class="invalid-feedback">E-Mail must be provided</p>
+    <p *ngIf="form.errors?.['email']" class="invalid-feedback">Invalid E-Mail address</p>
+  </ng-container>
+  <ng-template #noForm>
+    <input type="{{ type }}"
+           id="{{ inputId }}"
+           name="{{ name }}"
+           value="{{ value }}"
+           class="form-control"
+           [class.is-invalid]="!!error"
+           >
+    <p *ngIf="!!error" class="invalid-feedback">{{ error }}</p>
+  </ng-template>
+</div>

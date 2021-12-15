@@ -1,0 +1,6 @@
+<dl class="row">
+  <ng-container *ngFor="let key of keys">
+    <dt class="{{ classDD }}">{{ key }}</dt>
+    <dd class="{{ classDT }}" [innerHtml]="list[key]"></dd>
+  </ng-container>
+</dl>
